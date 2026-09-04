@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE UNIVERSE DECK</title>
+    <!-- NES.css Retro Framework -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <!-- 8-Bit Pixel Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #212529;
+            color: #ffffff;
+            padding: 15px;
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header-box {
+            text-align: center;
+            margin-bottom: 25px;
+            background-color: #212529;
+        }
+        h1 {
+            font-size: 20px;
+            color: #f7d51d;
+            margin-bottom: 10px;
+        }
+        .author {
+            font-size: 10px;
+            color: #92cc41;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .nav-buttons button {
+            font-size: 10px;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        h2 {
+            font-size: 14px;
+            color: #209cee;
+            margin-bottom: 15px;
+        }
+        h3 {
+            font-size: 11px;
+            color: #e76e55;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 8px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- HEADER -->
+    <div class="nes-container with-title is-dark header-box">
+        <p class="title">MAP PRESENTATION</p>
+        <h1>THE UNIVERSE DECK</h1>
+        <div class="author">By Abhishek Lamba</div>
+    </div>
+
+    <!-- RETRO CLICKABLE MENU BUTTONS -->
+    <div class="nav-buttons">
+        <button type="button" class="nes-btn is-primary" onclick="showSection('intro')">MAIN MENU</button>
+        <button type="button" class="nes-btn is-success" onclick="showSection('game1')">GAME 1: WONDER</button>
+        <button type="button" class="nes-btn is-warning" onclick="showSection('game2')">GAME 2: CONQUEST</button>
+        <button type="button" class="nes-btn is-error" onclick="showSection('game3')">GAME 3: FUTURE, PRESENT</button>
+    </div>
+
+    <!-- MAIN LANDING PAGE TEXT -->
+    <div id="intro" class="nes-container is-dark with-title content-section active">
+        <p class="title">SYSTEM INFO</p>
+        <p>The Universe Deck is a deck of cards of 54 unique cards, designed to gamify Museum of Art and Photography's "Beneath The Turning Sky" exhibit.</p>
+        <p>Each card is double-sided, representing the dual nature of reality. One side of the deck contains the fundamental building blocks of the universe-quarks, electrons, photons; all the ingredients that make up our universe.</p>
+        <p>The other side contains a high-resolution image fragment of one of the paintings in the exhibit. No two fragments are identical, making every card a unique "coordinate" in the game's universe.</p>
+        <p>When you place all 54 cards down you would form 4 complete artworks. Meanwhile, the other side would contain the fundamental particles of the universe.</p>
+        <p>Taken in unison, this single deck of 54 cards offers a complete picture of the universe-one side depicting how science unravels it, and the other side showing how human consciousness interprets it.</p>
+        <p>This deck of cards can be played in 3 different ways, with each game focusing on a different section of the exhibit. If you're alone, you can solo the deck and puzzle all the paintings on your own!</p>
+        <p style="text-align: center; color: #f7d51d; margin-top: 20px;">[ SELECT A GAME ABOVE TO READ RULES ]</p>
+    </div>
+
+    <!-- GAME 1 -->
+    <div id="game1" class="nes-container is-dark with-title content-section">
+        <p class="title">GAME 1</p>
+        <h2>Game 1: Wonder</h2>
+        
+        <h3>Intro+Setup:</h3>
+        <ul>
+            <li>Inspired by the first section of the exhibit: Wonder, in the game, whoever collects all the cards and ignites the Big Bang, wins.</li>
+            <li>Shuffle the deck and distribute them between all players. Players must keep their deck of cards painting side up in front of them.</li>
+            <li>Players have to announce which hand they are drawing with and which hand they are slapping with before the start of the game.</li>
+            <li>At the start of every turn, without looking, players must take the top card from their deck and place it in the play area, quark side facing up.</li>
+        </ul>
+        <p>There are specific cards, or combination of cards, that if played, any player on the table may slap the deck and claim as their own.</p>
+
+        <h3>The Slap Rules:</h3>
+        <ul>
+            <li>You can slap when a particle and its matching antiparticle appear one after the other. When this happens, both particles annihilate each other.</li>
+            <li>Or if three cards are played consecutively, of which 2 are up quarks and 1 is a down quark. These can be in any order. 2 up quarks and 1 down quark make a proton.</li>
+            <li>Similarly, if three cards are played consecutively, of which 2 are down quarks and 1 is an up quark. These can be in any order. 2 down quarks and 1 up quark make a neutron.</li>
+            <li>If a God Particle shows up, all players must switch the hand their drawing hand with their slapping hand.</li>
+        </ul>
+
+        <h3>Game End:</h3>
+        <ul>
+            <li>If you lose all your cards, you're eliminated.</li>
+            <li>If you win all cards in play, you win.</li>
+        </ul>
+    </div>
+
+    <!-- GAME 2 -->
+    <div id="game2" class="nes-container is-dark with-title content-section">
+        <p class="title">GAME 2</p>
+        <h2>Game 2: Conquest</h2>
+
+        <h3>Intro + Setup:</h3>
+        <ul>
+            <li>In this game, inspired by the Exploration and Conquest section of the exhibit, players must compete with one another to create the biggest picture possible.</li>
+            <li>Shuffle all cards, and give 4 to each player.</li>
+            <li>Players must hold their cards with their painting side facing towards them.</li>
+            <li>Keep the rest of the cards in the same deck with the quark side facing up.</li>
+            <li>Keep 1 card with the painting side facing up beside the draw deck.</li>
+        </ul>
+
+        <h3>In Your Turn:</h3>
+        <ul>
+            <li>Draw 1 card from either the draw pile or the discard pile.</li>
+            <li>You can have a maximum of 4 cards at any point of time. If you have more than 4 cards, discard any extra cards into the discard pile, painting side facing up.</li>
+            <li>If you have two cards that are contigious i.e. they belong to the same painting and are adjacent, then you may place them both down in front of you.</li>
+            <li>As you get more cards that are contigious with any two you have put down, you can keep adding them to your painting in your turn.</li>
+            <li>If you have a God Particle, you can put it back anywhere in the draw deck and take a card from there in its stead.</li>
+        </ul>
+
+        <h3>Game End:</h3>
+        <ul>
+            <li>The game ends when all paintings cards in the draw pile run out. God Particle Cards may remain in the deck.</li>
+            <li>The player who has the most complete picture of 1 painting, wins.</li>
+            <li>If players are tied, among the tied players, the player with the biggest second painting wins. If still tied, move on to the third painting, and so on.</li>
+        </ul>
+    </div>
+
+    <!-- GAME 3 -->
+    <div id="game3" class="nes-container is-dark with-title content-section">
+        <p class="title">GAME 3</p>
+        <h2>Game 3: Future, Present</h2>
+
+        <h3>Intro+Setup</h3>
+        <ul>
+            <li>Inspired by the Heisenberg Uncertainty Principle and the Future, Present section of the exhibit, in this game, you must cooperatively assemble all four 4 paintings as you attempt to heal the universe.</li>
+            <li>Pull out all the God Particle cards. For Round 1, distribute 2 cards to every player. For Round 2, distribute 4 cards to every player. For the last round, distribute all remaning cards evenly between players.</li>
+            <li>Players must hold the cards with the painting side facing away from them. At no point can players see the painting side of their own paintings.</li>
+        </ul>
+
+        <h3>Observation Phase:</h3>
+        <ul>
+            <li>Each player may give 1 Clue to a teammate by pointing to cards in their hand and naming 1 Painting Suit (e.g., "These two cards are Vishwarupa").</li>
+            <li>You're only allowed to give a clue about 1 painting.</li>
+            <li>Each teammate can see the subatomic position of their particle but not the painting which it belongs to. You must work together to get the complete picture.</li>
+        </ul>
+
+        <h3>Metta Phase:</h3>
+        <ul>
+            <li>There are no turns. Any player may place a card quark side-up into its corresponding slot on any painting grid at any time i.e. place all the cards in the right order.</li>
+            <li>There are 6 God Particle cards in play. You can use up any of the God Particle Cards to give players new clues.</li>
+            <li>Gaps are Legal: You do NOT need to wait for Slot 2 to be filled before placing Slot 3. A Mistake occurs if a player places a card in the wrong slot/suit, or plays a card when another player holds a lower-numbered card of that same painting in their hand. Lose a God Particle if you make a mistake.</li>
+        </ul>
+
+        <h3>Game End:</h3>
+        <ul>
+            <li>The game ends in failure if you lose all 6 God Particles.</li>
+            <li>You have five minutes to complete each round. The game ends in failure if you run out of time for a round.</li>
+            <li>On easy, you have 7 minutes per round, 6 for Medium, and 4 for Hard.</li>
+            <li>You win if you successfully complete all 4 grids.</li>
+            <li>When the game ends, flip all your cards to the painting side to see the complete picture, and how much of it you got right.</li>
+        </ul>
+    </div>
+
+    <!-- FOOTER / CREDITS -->
+    <div class="footer">
+        <p>A game designed by: Abhishek Lamba</p>
+        <p>Made With: MAP (Museum of Art & Photography)</p>
+        <p>Featuring the Art: The Universe by S.H. Raza | Hillscape by Mantu Das</p>
+    </div>
+
+</div>
+
+<!-- TAB CLICK JAVASCRIPT -->
+<script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
