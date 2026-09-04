@@ -366,11 +366,11 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Dynamic 16-Bit Pixel Starfield & Twinkle Engine
+    // Dynamic 16-Bit Pixel Starfield, Twinkle & Shooting Star Engine
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
 
-    let width, height, stars = [];
+    let width, height, stars = [], shootingStars = [];
 
     function initCanvas() {
         width = window.innerWidth;
@@ -379,18 +379,35 @@
         canvas.height = height;
 
         stars = [];
-        const numStars = Math.floor((width * height) / 2200); // Scaled star count
+        const numStars = Math.floor((width * height) / 2200);
 
         for (let i = 0; i < numStars; i++) {
             stars.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                size: Math.random() > 0.85 ? 3 : (Math.random() > 0.6 ? 2 : 1), // Square pixel sizing
+                size: Math.random() > 0.85 ? 3 : (Math.random() > 0.6 ? 2 : 1),
                 color: ['#ffffff', '#ffe600', '#00ffff', '#ff00ff', '#a090ff'][Math.floor(Math.random() * 5)],
                 alpha: Math.random(),
                 speed: 0.005 + Math.random() * 0.02
             });
         }
+    }
+
+    function spawnShootingStar() {
+        // Spawn randomly across top or right edges
+        const startX = Math.random() * width * 1.2;
+        const startY = Math.random() * (height * 0.4);
+        
+        shootingStars.push({
+            x: startX,
+            y: startY,
+            dx: -(6 + Math.random() * 4), // Diagonal speed X
+            dy: 4 + Math.random() * 3,   // Diagonal speed Y
+            length: 15 + Math.floor(Math.random() * 15), // Length in pixels
+            life: 1,
+            decay: 0.015 + Math.random() * 0.01,
+            color: Math.random() > 0.5 ? '#00ffff' : '#ffe600'
+        });
     }
 
     function renderStarfield() {
@@ -406,11 +423,10 @@
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
 
-        // Draw pixelated stars
+        // Draw pixelated background stars
         for (let i = 0; i < stars.length; i++) {
             let star = stars[i];
 
-            // Twinkle state update
             star.alpha += star.speed;
             if (star.alpha > 1 || star.alpha < 0.2) {
                 star.speed = -star.speed;
@@ -418,8 +434,39 @@
 
             ctx.fillStyle = star.color;
             ctx.globalAlpha = Math.max(0, Math.min(1, star.alpha));
-            // Force sharp 16-bit square star rendering
             ctx.fillRect(Math.floor(star.x), Math.floor(star.y), star.size, star.size);
+        }
+
+        // Random chance to spawn a new pixel shooting star
+        if (Math.random() < 0.015) { // ~1.5% chance per frame
+            spawnShootingStar();
+        }
+
+        // Draw pixelated shooting stars with stepped trails
+        for (let j = shootingStars.length - 1; j >= 0; j--) {
+            let s = shootingStars[j];
+
+            s.x += s.dx;
+            s.y += s.dy;
+            s.life -= s.decay;
+
+            if (s.life <= 0 || s.x < -100 || s.y > height + 100) {
+                shootingStars.splice(j, 1);
+                continue;
+            }
+
+            // Render pixel trail step by step
+            for (let k = 0; k < s.length; k++) {
+                const trailX = Math.floor(s.x - (s.dx * (k / 3)));
+                const trailY = Math.floor(s.y - (s.dy * (k / 3)));
+                const trailAlpha = s.life * (1 - k / s.length);
+
+                if (trailAlpha > 0) {
+                    ctx.fillStyle = k === 0 ? '#ffffff' : s.color;
+                    ctx.globalAlpha = trailAlpha;
+                    ctx.fillRect(trailX, trailY, k === 0 ? 3 : 2, k === 0 ? 3 : 2);
+                }
+            }
         }
 
         ctx.globalAlpha = 1;
