@@ -4,77 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE UNIVERSE DECK</title>
-    <!-- NES.css Retro Framework -->
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-    <!-- 8-Bit Pixel Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Google Fonts for Cosmic Elegance and High Readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background-color: #212529;
-            color: #ffffff;
-            padding: 15px;
-            margin: 0;
-            font-size: 12px;
-            line-height: 1.8;
+        :root {
+            --star-gold: #f3ce72;
+            --nebula-purple: #1a0b2e;
+            --cosmic-blue: #0d1b2a;
+            --card-bg: rgba(13, 27, 42, 0.75);
+            --border-glow: rgba(243, 206, 114, 0.3);
+            --text-light: #e0e6ed;
         }
+
+        /* Animated Starfield Background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px 15px;
+            line-height: 1.7;
+            font-size: 15px;
+            min-height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Background Star Grid */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(1px 1px at 10px 10px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 150px 80px, #f3ce72, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 200px 250px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 300px 120px, #64dfdf, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 350px 350px;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
+
+        /* Header Card */
         .header-box {
             text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(243, 206, 114, 0.1);
+            backdrop-filter: blur(8px);
             margin-bottom: 25px;
-            background-color: #212529;
         }
+
         h1 {
-            font-size: 20px;
-            color: #f7d51d;
-            margin-bottom: 10px;
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--star-gold);
+            font-size: 26px;
+            margin: 0 0 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(243, 206, 114, 0.5);
         }
+
         .author {
-            font-size: 10px;
-            color: #92cc41;
+            font-size: 13px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
         }
+
+        .presentation {
+            font-size: 11px;
+            color: #64dfdf;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Nav Buttons */
         .nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
             margin-bottom: 25px;
         }
-        .nav-buttons button {
-            font-size: 10px;
+
+        .nav-btn {
+            font-family: 'Cinzel Decorative', serif;
+            background: rgba(20, 30, 55, 0.8);
+            border: 1px solid var(--border-glow);
+            color: #ffffff;
+            padding: 12px 10px;
+            font-size: 11px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
+
+        .nav-btn:hover, .nav-btn.active-btn {
+            background: rgba(243, 206, 114, 0.15);
+            border-color: var(--star-gold);
+            color: var(--star-gold);
+            box-shadow: 0 0 15px rgba(243, 206, 114, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Content Sections */
         .content-section {
             display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
         }
+
         .content-section.active {
             display: block;
+            animation: fadeIn 0.5s ease-in-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         h2 {
-            font-size: 14px;
-            color: #209cee;
-            margin-bottom: 15px;
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--star-gold);
+            font-size: 20px;
+            border-bottom: 1px solid var(--border-glow);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
         }
+
         h3 {
-            font-size: 11px;
-            color: #e76e55;
-            margin-top: 15px;
-            margin-bottom: 10px;
+            color: #64dfdf;
+            font-size: 16px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
+
+        p {
+            margin-bottom: 16px;
+            color: #d1d5db;
+        }
+
         ul {
             padding-left: 20px;
             margin-top: 5px;
+            margin-bottom: 20px;
         }
+
         li {
             margin-bottom: 10px;
+            color: #e2e8f0;
         }
+
         .footer {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
-            font-size: 8px;
-            color: #888;
+            font-size: 12px;
+            color: #818cf8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            line-height: 1.8;
+        }
+
+        .select-prompt {
+            text-align: center;
+            color: var(--star-gold);
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 12px;
+            margin-top: 25px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -83,35 +200,33 @@
 <div class="container">
     
     <!-- HEADER -->
-    <div class="nes-container with-title is-dark header-box">
-        <p class="title">MAP PRESENTATION</p>
+    <div class="header-box">
+        <div class="presentation">MAP Presentation</div>
         <h1>THE UNIVERSE DECK</h1>
         <div class="author">By Abhishek Lamba</div>
     </div>
 
-    <!-- RETRO CLICKABLE MENU BUTTONS -->
+    <!-- COSMIC CLICKABLE MENU BUTTONS -->
     <div class="nav-buttons">
-        <button type="button" class="nes-btn is-primary" onclick="showSection('intro')">MAIN MENU</button>
-        <button type="button" class="nes-btn is-success" onclick="showSection('game1')">GAME 1: WONDER</button>
-        <button type="button" class="nes-btn is-warning" onclick="showSection('game2')">GAME 2: CONQUEST</button>
-        <button type="button" class="nes-btn is-error" onclick="showSection('game3')">GAME 3: FUTURE, PRESENT</button>
+        <button type="button" class="nav-btn active-btn" id="btn-intro" onclick="showSection('intro', 'btn-intro')">MAIN MENU</button>
+        <button type="button" class="nav-btn" id="btn-game1" onclick="showSection('game1', 'btn-game1')">GAME 1: WONDER</button>
+        <button type="button" class="nav-btn" id="btn-game2" onclick="showSection('game2', 'btn-game2')">GAME 2: CONQUEST</button>
+        <button type="button" class="nav-btn" id="btn-game3" onclick="showSection('game3', 'btn-game3')">GAME 3: FUTURE, PRESENT</button>
     </div>
 
-    <!-- MAIN LANDING PAGE TEXT -->
-    <div id="intro" class="nes-container is-dark with-title content-section active">
-        <p class="title">SYSTEM INFO</p>
+    <!-- MAIN LANDING PAGE TEXT (EXACT PDF TEXT) -->
+    <div id="intro" class="content-section active">
         <p>The Universe Deck is a deck of cards of 54 unique cards, designed to gamify Museum of Art and Photography's "Beneath The Turning Sky" exhibit.</p>
         <p>Each card is double-sided, representing the dual nature of reality. One side of the deck contains the fundamental building blocks of the universe-quarks, electrons, photons; all the ingredients that make up our universe.</p>
         <p>The other side contains a high-resolution image fragment of one of the paintings in the exhibit. No two fragments are identical, making every card a unique "coordinate" in the game's universe.</p>
         <p>When you place all 54 cards down you would form 4 complete artworks. Meanwhile, the other side would contain the fundamental particles of the universe.</p>
         <p>Taken in unison, this single deck of 54 cards offers a complete picture of the universe-one side depicting how science unravels it, and the other side showing how human consciousness interprets it.</p>
         <p>This deck of cards can be played in 3 different ways, with each game focusing on a different section of the exhibit. If you're alone, you can solo the deck and puzzle all the paintings on your own!</p>
-        <p style="text-align: center; color: #f7d51d; margin-top: 20px;">[ SELECT A GAME ABOVE TO READ RULES ]</p>
+        <div class="select-prompt">[ SELECT A GAME ABOVE TO EXPLORE RULES ]</div>
     </div>
 
-    <!-- GAME 1 -->
-    <div id="game1" class="nes-container is-dark with-title content-section">
-        <p class="title">GAME 1</p>
+    <!-- GAME 1 (EXACT PDF TEXT) -->
+    <div id="game1" class="content-section">
         <h2>Game 1: Wonder</h2>
         
         <h3>Intro+Setup:</h3>
@@ -138,9 +253,8 @@
         </ul>
     </div>
 
-    <!-- GAME 2 -->
-    <div id="game2" class="nes-container is-dark with-title content-section">
-        <p class="title">GAME 2</p>
+    <!-- GAME 2 (EXACT PDF TEXT) -->
+    <div id="game2" class="content-section">
         <h2>Game 2: Conquest</h2>
 
         <h3>Intro + Setup:</h3>
@@ -169,9 +283,8 @@
         </ul>
     </div>
 
-    <!-- GAME 3 -->
-    <div id="game3" class="nes-container is-dark with-title content-section">
-        <p class="title">GAME 3</p>
+    <!-- GAME 3 (EXACT PDF TEXT) -->
+    <div id="game3" class="content-section">
         <h2>Game 3: Future, Present</h2>
 
         <h3>Intro+Setup</h3>
@@ -205,24 +318,36 @@
         </ul>
     </div>
 
-    <!-- FOOTER / CREDITS -->
+    <!-- FOOTER / CREDITS (EXACT PDF TEXT) -->
     <div class="footer">
-        <p>A game designed by: Abhishek Lamba</p>
-        <p>Made With: MAP (Museum of Art & Photography)</p>
-        <p>Featuring the Art: The Universe by S.H. Raza | Hillscape by Mantu Das</p>
+        <div><strong>Credits:</strong> A game designed by: Abhishek Lamba</div>
+        <div><strong>Made With:</strong> MAP (Museum of Art & Photography)</div>
+        <div><strong>Featuring the Art:</strong> The Universe by S.H. Raza | Hillscape by Mantu Das</div>
     </div>
 
 </div>
 
-<!-- TAB CLICK JAVASCRIPT -->
+<!-- NAVIGATION SCRIPT -->
 <script>
-    function showSection(sectionId) {
+    function showSection(sectionId, btnId) {
+        // Hide all sections
         const sections = document.querySelectorAll('.content-section');
         sections.forEach(section => {
             section.classList.remove('active');
         });
+
+        // Deactivate all buttons
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('active-btn');
+        });
+
+        // Show targeted section & activate button
         document.getElementById(sectionId).classList.add('active');
-        window.scrollTo(0, 0);
+        document.getElementById(btnId).classList.add('active-btn');
+        
+        // Smooth scroll to top of rules
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
 
